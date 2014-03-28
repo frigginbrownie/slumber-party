@@ -1,0 +1,74 @@
+<head>
+</head>
+
+<body>
+  <div id="outer">
+    {{renderPage}}
+  </div>
+</body>
+
+<template name="leaderboard">
+  <title>iPad - Scorekeeper</title>
+  <div class="leaderboard">
+    {{#each players}}
+      {{> player}}
+    {{/each}}
+  </div>
+
+  {{#if selected_name}}
+  <div class="details">
+    <div class="name">{{selected_name}}</div>
+    <input type="button" class="add50" value="+50" />
+    <input type="button" class="add100" value="+100" />
+    <input type="button" class="add250" value="+250" />
+    <input type="button" class="add500" value="+500" />
+    <input type="button" class="take50" value="-50" />
+    <input type="button" class="take100" value="-100" />
+    <input type="button" class="take250" value="-250" />
+    <input type="button" class="take500" value="-500" />
+    <input type="button" class="lose" value="0" />
+    <input type="button" class="random" value="Random" />
+  </div>
+  {{else}}
+  <div class="none">Click a player to select</div>
+  {{/if}}
+
+  {{> slideDisplay}}
+</template>
+
+<template name="player">
+  <div class="player {{selected}}">
+    <span class="name {{name}}">{{name}}</span>
+    <span class="score">{{score}}</span>
+  </div>
+</template>
+
+<template name="playerScore">
+  <title>Display - Scoreboard</title>
+  <div class="player">
+    {{#each players}}
+      <span class="name {{name}}">{{name}}</span>
+      <span class="score">{{score}}</span>
+    {{/each}}
+  </div>
+</template>
+
+<template name="slideDisplay">
+  <input type="button" class="lastSlide" value="<<" />
+  <input type="button" class="nextSlide" value=">>" />
+    <p>Current Slide: {{slides.slide}}</p>
+</template>
+
+<template name="admin">
+  <title>Admin - Scoreboard</title>
+  <div class="new_player">
+    <input id="new_player_name" type="text" />
+    <input type="button" class="add" value="Add Player" />
+  </div>
+  <div class="player">
+    {{#each players}}
+      <span class="name"><input type="button" value="X" class="delete" />{{name}}</span>
+    {{/each}}
+  </div>
+</template>
+
